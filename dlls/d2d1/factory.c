@@ -1696,6 +1696,11 @@ static void d2d_settings_init(void)
 BOOL WINAPI DllMain(HINSTANCE inst, DWORD reason, void *reserved)
 {
     if (reason == DLL_PROCESS_ATTACH)
+    {
         d2d_settings_init();
+#ifndef __i386__
+        __wine_init_unix_call();
+#endif
+    }
     return TRUE;
 }
